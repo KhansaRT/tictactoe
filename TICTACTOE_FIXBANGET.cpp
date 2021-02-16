@@ -41,6 +41,7 @@ int main (){
 	printf ("\n   Selamat Datang di Permainan TICTACTOE!\n");
 	printf ("\n   MAIN MENU \n\n");
 	printf ("   Ketik 'mulai' untuk memulai permainan\n");
+<<<<<<< HEAD
 	printf ("   Ketik 'aturan' jika anda belum tahu cara memainkan permainan TICTACTOE\n");
 	printf ("   Ketik 'keluar' jika anda tidak ingin bermain game ini\n");
 	printf ("\n   Silahkan ketik disini: ");
@@ -48,6 +49,15 @@ int main (){
 	if (mainmenu == 0){
 		printf ("Inputan anda salah!!\n");
 		printf ("\n   Tekan enter untuk melanjutkan! ");
+=======
+	printf ("   Ketik 'aturan' untuk mengetahui aturan game TICTACTOE sederhana\n");
+	printf ("   Ketik 'keluar' untuk berhenti bermain\n");
+	printf ("\n   Silahkan ketik disini: ");
+	mainmenu = menu();
+	if (mainmenu == 0){
+		printf ("\n   Inputan anda salah!!\n");
+		printf ("   Tekan enter untuk melanjutkan! ");
+>>>>>>> 4a359a340fbac7c030e3a9a7b9a3e5ffebf7b553
 		getch();
 		mainmenu = 1;
 		continue;
@@ -60,7 +70,11 @@ int main (){
 	}
 	else if (mainmenu == 3){
 		system ("cls");
+<<<<<<< HEAD
 		printf ("Yaudah deh, dadah!");
+=======
+		printf ("     Yaudah deh, dadah!");
+>>>>>>> 4a359a340fbac7c030e3a9a7b9a3e5ffebf7b553
 		return 0;
 	}
 	kolom[1]='1';
@@ -126,13 +140,21 @@ int main (){
 					player++;
 			}
 			else {
+<<<<<<< HEAD
 				printf ("Inputan kamu salah, silahkan coba lagi :");
+=======
+				printf ("   Inputan kamu salah, silahkan coba lagi :");
+>>>>>>> 4a359a340fbac7c030e3a9a7b9a3e5ffebf7b553
 				getch();
 				player++;
 			}
 		} else {
             player++;
+<<<<<<< HEAD
             printf("Melebihi Batas waktu");
+=======
+            printf("   Melebihi Batas waktu");
+>>>>>>> 4a359a340fbac7c030e3a9a7b9a3e5ffebf7b553
             _sleep(1500);
             }
 	    }
@@ -188,14 +210,25 @@ int main (){
 			else if (kolom[1] != '1' && kolom [3] != '3' && kolom [2] == '2'){   
 			kolom [2] = Kmark;
 			}
+<<<<<<< HEAD
 			else if (kolom[1] == Pmark && kolom [4] == Pmark && kolom [7] == '7' || kolom[1] != '1' && kolom [4] != '4' && kolom [7] == '7' ){   
+=======
+			else if (kolom[1] != '1' && kolom [4] != '4'  && kolom[5] != '5' && kolom [9]=='9'){   
+			kolom [9] = Kmark;
+			}
+			else if (kolom[1] != '1' && kolom [4] != '4' && kolom [7] == '7' && kolom[5] != '5' || kolom[1] == Pmark && kolom [4] == Pmark && kolom [7] == '7'){   
+>>>>>>> 4a359a340fbac7c030e3a9a7b9a3e5ffebf7b553
 			kolom [7] = Kmark;
 			}
 		
 			else if (kolom[1] != '1' && kolom [7] != '7' && kolom [4] == '4'){   
 			kolom [4] = Kmark;
 			}
+<<<<<<< HEAD
 			else if (kolom[1]== Pmark && kolom [5] == Pmark && kolom[9]=='9'|| kolom[1] != '1'  && kolom[5] != '5' && kolom [9]=='9'){   
+=======
+			else if (kolom[1] != '1' && kolom [5] != '5' && kolom [9] == '9'){   
+>>>>>>> 4a359a340fbac7c030e3a9a7b9a3e5ffebf7b553
 			kolom [9] = Kmark;
 			}
 			else if (kolom[1] != '1' && kolom [9] != '9' && kolom [5] == '5'){
@@ -428,7 +461,11 @@ void board (){
 void aturan(){
 	int b;
 	system ("cls");
+<<<<<<< HEAD
 	printf("\n 				    ATURAN BERMAIN GAME TICTACTOE SEDERHANA\n\n\n");
+=======
+	printf("\n   ~ ATURAN BERMAIN GAME TICTACTOE SEDERHANA ~\n\n\n");
+>>>>>>> 4a359a340fbac7c030e3a9a7b9a3e5ffebf7b553
 	printf ("   1. User hanya dapat memakai satu simbol yaitu 'X'.\n");
 	printf ("   2. User memiliki tujuan memenangkan permainan dengan membuat garis lurus (vertikal, horizontal, diagonal).\n");
 	printf ("   3. Untuk memulai permainan, user diharuskan untuk mengetik menu 'mulai'.\n");
@@ -437,7 +474,11 @@ void aturan(){
 	printf ("   6. User diberikan waktu 3 detik untuk meletakkan simbol. \n");
 	printf ("   7. Ketika sudah lewat dari 3 detik, secara otomatis komputer akan mengisi kotak kosong dalam papan permainan.\n");
 	printf ("   8. Permainan selesai ketika board telah terisi penuh atau salah satu pemain berhasil membuat satu garis lurus.\n\n");
+<<<<<<< HEAD
 	printf ("\n   Tekan enter untuk melanjutkan! ");
+=======
+	printf ("\n   Tekan enter untuk kembali ke main menu ");
+>>>>>>> 4a359a340fbac7c030e3a9a7b9a3e5ffebf7b553
 	getch();
 }
 
