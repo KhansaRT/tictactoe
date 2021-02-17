@@ -45,6 +45,7 @@ int main (){
 	printf ("   Ketik 'keluar' jika anda tidak ingin bermain game ini\n");
 	printf ("\n   Silahkan ketik disini: ");
 	mainmenu = menu();
+	//logika pilihan menu
 	if (mainmenu == 0){
 		printf ("Inputan anda salah!!\n");
 		printf ("\n   Tekan enter untuk melanjutkan! ");
@@ -84,7 +85,7 @@ int main (){
 		//Logika Player 
 		if (player == 1){
 		printf ("   Masukkan nomor kolom yang ingin anda pilih: ");
-		int waktu_awal = clock();
+		int waktu_awal = clock();  //penghitung waktu input user
 		scanf ("%d", &pick);
 		int waktu_akhir = clock();
 		int batas = waktu_akhir - waktu_awal;
@@ -149,49 +150,12 @@ int main (){
 			else if (kolom[1] != '1' && kolom [2] != '2' && kolom [3] == '3' ){   
 			kolom [3] = Kmark;
 			}	
-		/*	else if (kolom[6] == '6' && kolom [4] == '4' && kolom [5] != '5' || kolom[6] != '6' && kolom [4] == '4' && kolom [5] != '5' ){   
-			kolom [4] = Kmark;
-			}//coba
-			else if (kolom[6] == '6' && kolom [4] != '4' && kolom [5] != '5' ){   
-			kolom [6] = Kmark;
-			}//coba
-			else if (kolom[1] == '1' && kolom [2] == '2' && kolom [3] != '3' || kolom[1] != '1' && kolom [2] == '2' && kolom [3] != '3' ){   
-			kolom [2] = Kmark;
-			}//coba
-			else if (kolom[1] == '1' && kolom [2] != '2' && kolom [3] != '3' ){   
-			kolom [1] = Kmark;
-			}//coba
-			else if (kolom[1] != '1' && kolom [2] != '2' && kolom [3] == '3' ){   
-			kolom [3] = Kmark;
-			}//coba
-			else if (kolom[7] == '7' && kolom [8] != '8' && kolom [9] != '9' ){   
-			kolom [7] = Kmark;
-			}//coba
-			else if (kolom[7] != '7' && kolom [8] == '8' && kolom [9] != '9' ){   
-			kolom [8] = Kmark;
-			}//coba
-			else if (kolom[7] != '7' && kolom [8] != '8' && kolom [9] == '9' ){   
-			kolom [9] = Kmark;
-			}//coba
-			else if (kolom[5] != '5' && kolom [9] == '9' && kolom [1] == '1' || kolom[5] != '5' && kolom [9] != '9' && kolom [1] == '1' ){   
-			kolom [1] = Kmark;
-			}//coba diagonal
-			else if (kolom[5] != '5' && kolom [9] == '9' && kolom [1] == '1' || kolom[5] != '5' && kolom [9] == '9' && kolom [1] != '1' ){   
-			kolom [9] = Kmark;
-			}//coba diagonal
-			else if (kolom[5] != '5' && kolom [3] == '3' && kolom [7] == '7' || kolom[5] != '5' && kolom [3] == '3' && kolom [7] != '7' ){   
-			kolom [3] = Kmark;
-			}//coba diagonal kanan
-			else if (kolom[5] != '5' && kolom [3] != '3' && kolom [7] == '7' || kolom[5] != '5' && kolom [3] == '3' && kolom [7] == '7' ){   
-			kolom [7] = Kmark;
-			}//coba diagonal kanan */
 			else if (kolom[1] != '1' && kolom [3] != '3' && kolom [2] == '2'){   
 			kolom [2] = Kmark;
 			}
 			else if (kolom[1] == Pmark && kolom [4] == Pmark && kolom [7] == '7' || kolom[1] != '1' && kolom [4] != '4' && kolom [7] == '7' ){   
 			kolom [7] = Kmark;
 			}
-		
 			else if (kolom[1] != '1' && kolom [7] != '7' && kolom [4] == '4'){   
 			kolom [4] = Kmark;
 			}
@@ -405,7 +369,7 @@ int menu (){
 	return 0;
 }
 
-//modul board
+//modul board (papan permainan)
 void board (){
 	system ("cls");
 	printf ("\n   Player : 'X'   VS    Komputer : 'O'\n\n");
@@ -428,7 +392,7 @@ void board (){
 void aturan(){
 	int b;
 	system ("cls");
-	printf("\n 						HOW TO PLAY TICTACTOE\n\n\n");
+	printf("\n   ATURAN BERMAIN TICTACTOE\n\n\n");
 	printf ("   1. User hanya dapat memakai satu simbol yaitu 'X'.\n");
 	printf ("   2. User memiliki tujuan memenangkan permainan dengan membuat garis lurus (vertikal, horizontal, diagonal).\n");
 	printf ("   3. Untuk memulai permainan, user diharuskan untuk mengetik menu 'mulai'.\n");
