@@ -1,14 +1,16 @@
 /* 
 TUGAS BESAR TIC TAC TOE
 Nama  	  : 1. Diana Fauziah (201524003)
-			2. Khansa Rafifah Taqiyyah (201524012)
+	    2. Khansa Rafifah Taqiyyah (201524012)
 Kelas 	  : 1A-D4TI
 Deskripsi : Aplikasi Permainan TICTACTOE sederhana.
 Daftar Modul  :	1.	Modul utama  
 				2.	Modul board 
-				3.	Modul menu  
+				3.	Modul getmenu  
 				4.	Modul cekmenang
 				5.	Modul aturan 
+				6.      Modul logika
+				7.      Modul Tampilan Menu
 */
 
 #include <stdio.h>
@@ -18,52 +20,110 @@ Daftar Modul  :	1.	Modul utama
 #include <time.h>
 
 //Deklarasi modul
-void board ();
-int menu ();
-void aturan();
-int cekmenang();
+void board ();					/*	PJ 		: Khansa Rafifah T.
+							Jenis 		: Procedure
+							Keterangan	: Menampilkan tampilan papan permainan
+						*/
 
-	char kolom[10]= {'0','1','2','3','4','5','6','7','8','9'};
-	int lanjut;
-	int pick,i;
-	char Pmark, Kmark;
+int getmenu (char pilihan []);			/*	PJ 		: Diana Fauziah
+							Jenis 		: Function
+							Keterangan	: Menjalankan program main menu
+						*/
+
+void aturan();					/*	PJ 		: Khansa Rafifah T.
+							Jenis 		: Procedure
+							Keterangan	: Menampilkan aturan bermain 
+						*/
+													
+int cekmenang();				/*	PJ 		: Diana Fauziah
+							Jenis 		: Function
+							Keterangan	: Menjalankan program untuk menentukan kemenangan
+						*/
+int logika ();					/*	PJ 		: Diana Fauziah dan Khansa Rafifah T.
+							Jenis 		: Function
+							Keterangan	: Cek kondisi logika komputer dan player
+						*/
+void tampilanMenu();				/*	PJ 		: Diana Fauziah
+							Jenis 		: Procedure
+							Keterangan	: Menampilkan tampilan menu
+						*/
+
+//deklarasi variable global
+char kolom[10]= {'0','1','2','3','4','5','6','7','8','9'}; 		//variable inisiasi papan permainan
+
 	
 //modul utama
 int main (){ 
 	//deklarasi
-	int mainmenu = 1, player = 1;
-
-	//algoritma
-	/*Menu*/
+	int mainmenu = 1, player = 1; 		//inisiasi player = 1 agar pemain pertama selalu user (jika waktu input pertama user tidak > 3 detik
+	int i;					//variable penampung modul cek Kemenangan untuk menyatakan kondisi kemenangan/ kekalahan player di modul utama
+	char pilih[100];			//variable pilih menu 
+	
+	/*algoritma*/
 	while (mainmenu==1){
-	system ("cls");
-	system("color F5");
+		system ("cls");
+		system("color F5");
+		
+	/*modul menampilkan modul*/
+		tampilanMenu();
+			
+		scanf("%s",&pilih);		//inputan user untuk memilih mulai, melihat aturan atau keluar dari program
+		mainmenu = getmenu(pilih);
+
+		if (mainmenu == 0){
+			printf ("Inputan anda salah!!\n");
+			printf ("\n   Tekan enter untuk melanjutkan! ");
+			getch();
+			mainmenu = 1;
+			continue;
+		}
+		else if (mainmenu == 2){
+			system ("cls");
+			aturan();
+			mainmenu = 1;
+			continue;
+		}
+		else if (mainmenu == 3){
+			system ("cls");
+			printf ("Yaudah deh, dadah!");
+			return 0;
+		}
+		
+	/*Pemanggilan Modul Logika player dan komputer */
+		i = logika ();
+	/*Pemanggilan Tampilan Board*/	
+		board();
+		
+		if (i==1){								//cek kondisi hasil pemanggilan modul cek kemenangan
+			printf ("   Wahhhh hebat! Kamu menang!");
+			printf ("\n   Tekan enter untuk melanjutkan! ");
+			getch();
+		
+		}else {
+			printf ("\n   ANDA KALAAHHH T_T MAIN LAGI YUK!");
+			printf ("\n   Tekan enter untuk melanjutkan! ");
+			getch();
+		}
+	}
+	return 0;
+}
+
+void tampilanMenu (){
 	printf ("\n   Selamat Datang di Permainan TICTACTOE!\n");
 	printf ("\n   MAIN MENU \n\n");
 	printf ("   Ketik 'mulai' untuk memulai permainan\n");
 	printf ("   Ketik 'aturan' jika anda belum tahu cara memainkan permainan TICTACTOE\n");
 	printf ("   Ketik 'keluar' jika anda tidak ingin bermain game ini\n");
 	printf ("\n   Silahkan ketik disini: ");
-	mainmenu = menu();
-	//logika pilihan menu
-	if (mainmenu == 0){
-		printf ("Inputan anda salah!!\n");
-		printf ("\n   Tekan enter untuk melanjutkan! ");
-		getch();
-		mainmenu = 1;
-		continue;
-	}
-	else if (mainmenu == 2){
-		system ("cls");
-		aturan();
-		mainmenu = 1;
-		continue;
-	}
-	else if (mainmenu == 3){
-		system ("cls");
-		printf ("Yaudah deh, dadah!");
-		return 0;
-	}
+}
+
+//modul logika
+int logika (){
+		
+	int pick,i;			//variable pick sebagai input user memilih kotak di board sebagai langkah player 
+	char Pmark, Kmark; 		/* variable Kmark --> sebagai variable mark 'O' milik komputer
+					   variable Pmark --> sebagai variable mark 'X' milik Player */ 
+	
 	kolom[1]='1';
 	kolom[2]='2';
 	kolom[3]='3';
@@ -73,7 +133,7 @@ int main (){
 	kolom[7]='7';
 	kolom[8]='8';
 	kolom[9]='9';
-	player = 1;
+	int player = 1;
 	
 	/*MULAI PERMAINAN*/
 	do {
@@ -85,11 +145,11 @@ int main (){
 		//Logika Player 
 		if (player == 1){
 		printf ("   Masukkan nomor kolom yang ingin anda pilih: ");
-		int waktu_awal = clock();  //penghitung waktu input user
+		int waktu_awal = clock(); 					//setting waktu untuk input user
 		scanf ("%d", &pick);
 		int waktu_akhir = clock();
 		int batas = waktu_akhir - waktu_awal;
-		if ((batas/1000) <= 3){
+		if ((batas/1000) <= 3){   					//cek kondisi agar user tidak melebihi 3 detik 
 			if (pick == 1 && kolom[1] == '1'){
 				kolom [1] = Pmark;
 					player++;
@@ -141,7 +201,7 @@ int main (){
 	    //Logika Komputer
 	  	if (player == 2) {
 		 	player--; 
-	    	if (kolom [1] != '1' && kolom [2] =='2' && kolom[3] == '3' && kolom[4] =='4'&& kolom[7] =='7' && kolom[9] =='9' && kolom[5] =='5' ){   //win
+	    	if (kolom [1] != '1' && kolom [2] =='2' && kolom[3] == '3' && kolom[4] =='4'&& kolom[7] =='7' && kolom[9] =='9' && kolom[5] =='5' ){   
 			kolom [5] = Kmark;
 			}
 			else if (kolom [1] == '1' && kolom [2] =='2' && kolom[3] == '3' && kolom[4] =='4'&& kolom[7] =='7' && kolom[9] =='9' && kolom[5] =='5' && kolom[6] =='6' && kolom[8] =='8' ){
@@ -150,12 +210,14 @@ int main (){
 			else if (kolom[1] != '1' && kolom [2] != '2' && kolom [3] == '3' ){   
 			kolom [3] = Kmark;
 			}	
+
 			else if (kolom[1] != '1' && kolom [3] != '3' && kolom [2] == '2'){   
 			kolom [2] = Kmark;
 			}
 			else if (kolom[1] == Pmark && kolom [4] == Pmark && kolom [7] == '7' || kolom[1] != '1' && kolom [4] != '4' && kolom [7] == '7' ){   
 			kolom [7] = Kmark;
 			}
+		
 			else if (kolom[1] != '1' && kolom [7] != '7' && kolom [4] == '4'){   
 			kolom [4] = Kmark;
 			}
@@ -171,7 +233,7 @@ int main (){
 			else if (kolom[2] != '2' && kolom [1] != '1' && kolom [3] == '3' ){
 			kolom[3] = Kmark;
 			}
-			else if (kolom[2] != '2' && kolom [3] != '3' && kolom [1] == '1'){	 //win	
+			else if (kolom[2] != '2' && kolom [3] != '3' && kolom [1] == '1'){	 
 			kolom[1] = Kmark;
 			}
 			else if (kolom[2] != '2' && kolom [5] != '5' && kolom [8] == '8'){	
@@ -224,7 +286,7 @@ int main (){
 			}
 			else if (kolom[5] != '5' && kolom [1] != '1' && kolom[9]== '9' ){
 			kolom[9]= Kmark;
-			}
+			}  //cek diagonal
 			else if (kolom[5] != '5' && kolom [9] != '9' && kolom[1]== '1'){
 			kolom[1] = Kmark;
 			}	
@@ -236,13 +298,13 @@ int main (){
 			}
 			else if (kolom[5] != '5' && kolom [2] != '2' && kolom[8]== '8'){
 			kolom[8]= Kmark;
-			}
+			} //cek vertikal
 			else if (kolom[5] != '5' && kolom [8] != '8' && kolom[2]== '2'){
 			kolom[2]= Kmark;
 			}		
 			else if (kolom[5] != '5' && kolom [4] != '4' && kolom[6]== '6'){
 			kolom[6]= Kmark;
-			}	
+			}	//cek horizontal
 			else if (kolom[5] != '5' && kolom [6] != '6' && kolom[4]== '4'){
 			kolom[4]= Kmark; 	//selesai
 			}
@@ -288,7 +350,7 @@ int main (){
 			else if (kolom[8] != '8' && kolom [7]!= '7' && kolom [9] == '9' ){
 			kolom[9] = Kmark;
 			}
-			else if (kolom[8] != '8' && kolom [9] != '9' && kolom [7] == '7'){	 //win	
+			else if (kolom[8] != '8' && kolom [9] != '9' && kolom [7] == '7'){	 
 			kolom[7] = Kmark;
 			}
 			else if (kolom[8] != '8' && kolom [5] != '5' && kolom [2] == '2'){	
@@ -336,40 +398,28 @@ int main (){
 	i = cekmenang();
 		
 	}while (i == -1);
-	
-	board();
-	
-	if (i==1){
-		printf ("   Wahhhh hebat! Kamu menang!");
-		printf ("\n   Tekan enter untuk melanjutkan! ");
-		getch();
-	
-	}else {
-		printf ("\n   ANDA KALAAHHH T_T MAIN LAGI YUK!");
-		printf ("\n   Tekan enter untuk melanjutkan! ");
-		getch();
-	}
-	}
-	return 0;
+
+return i;
 }
 
+
+
 //Modul menu
-int menu (){
-	char menu[300];
-	scanf("%s",&menu);
-	if (strcmp(menu,"mulai")==0){
+int getmenu (char pilihan[]){
+
+	if (strcmp(pilihan,"mulai")==0){
 		return 1;
 	}
-	else if (strcmp(menu,"aturan")==0){
+	else if (strcmp(pilihan,"aturan")==0){
 		return 2;
 	}
-	else if (strcmp(menu,"keluar")==0){
+	else if (strcmp(pilihan,"keluar")==0){
 		return 3;
 	}
 	return 0;
 }
 
-//modul board (papan permainan)
+//modul board
 void board (){
 	system ("cls");
 	printf ("\n   Player : 'X'   VS    Komputer : 'O'\n\n");
@@ -392,7 +442,7 @@ void board (){
 void aturan(){
 	int b;
 	system ("cls");
-	printf("\n   ATURAN BERMAIN TICTACTOE\n\n\n");
+	printf("\n 	                                       ATURAN BERMAIN TICTACTOE\n\n\n");
 	printf ("   1. User hanya dapat memakai satu simbol yaitu 'X'.\n");
 	printf ("   2. User memiliki tujuan memenangkan permainan dengan membuat garis lurus (vertikal, horizontal, diagonal).\n");
 	printf ("   3. Untuk memulai permainan, user diharuskan untuk mengetik menu 'mulai'.\n");
